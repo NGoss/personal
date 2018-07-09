@@ -4,8 +4,8 @@ import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/core/styles'
 
 import Print from './print'
-// import Save from './save'
-// import Export from './export'
+import Save from './save'
+import Export from './export'
 
 import ExpansionPanel from '@material-ui/core/ExpansionPanel'
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary'
@@ -41,19 +41,31 @@ class DeliveryPanel extends React.Component {
 
 		this.state = {
 			tab: 0,
+			method: 'All',
+			section: ''
 		}
+
+		this.handleSelect = this.handleSelect.bind(this)
+		this.handleSectionChange = this.handleSectionChange.bind(this)
 	}
 	renderPanelBody(tab) {
 		switch (tab) {
 			case 0:
-				return <Print />
+				return <Print method={this.state.method} section={this.state.section} handleSelect={this.handleSelect} handleSectionChange={this.handleSectionChange}/>
 			case 1:
-				return <Print /> //Save
+				return <Save method={this.state.method} section={this.state.section} handleSelect={this.handleSelect} handleSectionChange={this.handleSectionChange}/>
 			case 2:
-				return <Print /> //Export
+				return <Export method={this.state.method} section={this.state.section} handleSelect={this.handleSelect} handleSectionChange={this.handleSectionChange}/>
 			default:
-				return <Print />
+				return <Print method={this.state.method} section={this.state.section} handleSelect={this.handleSelect} handleSectionChange={this.handleSectionChange}/>
 		}
+	}
+	handleSelect(event, method) {
+		if (event) this.setState({method: event.target.value})
+		else if (method) this.setState({method})
+	}
+	handleSectionChange(event) {
+		this.setState({section: event.target.value})
 	}
 	render() {
 		const { classes } = this.props

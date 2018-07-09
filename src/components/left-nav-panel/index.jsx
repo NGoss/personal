@@ -8,6 +8,7 @@ import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary'
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails'
 import ClickAwayListener from '@material-ui/core/ClickAwayListener'
 import Typography from '@material-ui/core/Typography'
+import List from '@material-ui/core/List'
 import IconButton from '@material-ui/core/IconButton'
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
 import { ScreenClassRender } from 'react-grid-system'
@@ -99,24 +100,20 @@ class LeftNavPanel extends React.Component {
 								</ExpansionPanelSummary>
 								<ExpansionPanelDetails>
 									<div className={classes.tocSection}>
-										<TocElement />
-										<TocElement />
-										<TocElement />
-										<TocElement />
-										<TocElement />
-										<TocElement />
-										<TocElement />
-										<TocElement />
-										<TocElement />
-										<TocElement />
-										<TocElement />
-										<TocElement />
-										<TocElement />
-										<TocElement />
-										<TocElement />
-										<TocElement />
-										<TocElement />
-										<TocElement />
+										<List disablePadding>
+											<TocElement title="Chapter 1: The Book Begins">
+												<TocElement title="The Start of the Start"/>
+												<TocElement title="The Second Bit"/>
+											</TocElement>
+											<TocElement title="Chapter 2: The Middle Part">
+												<TocElement title="That Part with a Bunch of Pictures">
+													<TocElement title="Fig 1.1: Dave meets the scientists" />
+													<TocElement title="Fig 1.2: Dave is run out of town" />
+													<TocElement title="Fig 2.1: The scientists miss Dave" />
+												</TocElement>
+											</TocElement>
+											<TocElement title="Chapter 3: The End"/>
+										</List>
 									</div>
 								</ExpansionPanelDetails>
 							</ExpansionPanel>

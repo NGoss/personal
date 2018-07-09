@@ -33,7 +33,7 @@ const styles = theme => ({
 	},
 	toolbar: {
 		height: '100%',
-		backgroundColor: '#0d69ad'
+		backgroundColor: ''
 	},
 	menuButton: {
 		marginLeft: 12,
@@ -68,9 +68,10 @@ class TopToolbar extends React.Component {
 					>
 					<Toolbar
 						className={classes.toolbar}
-						disableGutters={!leftNavOpen}>
+						disableGutters={!leftNavOpen}
+						color="primary">
 								<IconButton
-									color="inherit"
+									color="secondary"
 									className={classNames((isMobile ? classes.menuButtonMobile : classes.menuButton),
 										(!isMobile && leftNavOpen) && classes.hide)}
 									onClick={handleLeftNavExpand(isMobile)}>
@@ -78,7 +79,7 @@ class TopToolbar extends React.Component {
 								</IconButton>
 								<Typography
 									style={isMobile ? search ? {width: 0} : {width: '100%'} : {}}
-									variant="title" color="inherit" className={classes.title} noWrap>
+									variant="title" color="secondary" className={classes.title} noWrap>
 									Look it's an eBook!
 								</Typography>
 								<Tools />

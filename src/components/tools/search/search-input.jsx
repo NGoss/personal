@@ -23,6 +23,12 @@ const styles = (theme) => ({
 		'&:after': {
 			borderBottomColor: 'rgba(255, 255, 255, 0.8)',
 		},
+		'&:before': {
+			borderBottomColor: 'rgba(255, 255, 255, 0.3)',
+		},
+		'&:hover:not($input$disabled):not($input$focused):not($input$error):before': {
+			borderBottomColor: 'rgba(255, 255, 255, 0.5)'
+		}
 	},
 	collapsed: {
 		width: 0,
