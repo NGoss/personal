@@ -12,9 +12,11 @@ import List from '@material-ui/core/List'
 import IconButton from '@material-ui/core/IconButton'
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
 import { ScreenClassRender } from 'react-grid-system'
+
 import TocElement from './toc-element'
 import InfoSection from './info-section'
 import DeliveryPanel from './delivery-panel'
+import BookmarksPanel from './bookmarks/'
 
 const drawerWidth = '25vw'
 const mobileDrawerWidth = '80vw'
@@ -46,7 +48,7 @@ const styles = theme => ({
 	drawerItem: {
 		boxShadow: 'none',
 		'overflow-y': 'auto',
-		'max-height': 'Calc(100vh - 214px)'
+		'max-height': 'Calc(100vh - 270px)'
 	},
 	tocSection: {
 		width: '100%',
@@ -64,7 +66,7 @@ class LeftNavPanel extends React.Component {
 	}
 
 	render() {
-		const { leftNavOpen, classes, handleLeftNavClose } = this.props;
+		const { leftNavOpen, classes, handleLeftNavClose, bookmarks, removeBookmark } = this.props;
 
 		const renderDrawerContents = (screenClass) => {
 			const isMobile = ['xs', 'sm'].includes(screenClass)
@@ -118,9 +120,21 @@ class LeftNavPanel extends React.Component {
 								</ExpansionPanelDetails>
 							</ExpansionPanel>
 							<Divider />
-								<DeliveryPanel
-									expanded={this.state.activePanel === 'delivery'}
-									onChange={(e, expanded) => {if (expanded) this.setState({activePanel: 'delivery'})}} />
+							<ExpansionPanel
+								expanded={this.state.activePanel === 'bookmarks'}
+								onChange={(e, expanded) => {if (expanded) this.setState({activePanel: 'bookmarks'})}}
+								className={classes.drawerItem}>
+								<ExpansionPanelSummary>
+									<Typography variant="headline">Bookmarks</Typography>
+								</ExpansionPanelSummary>
+								<ExpansionPanelDetails>
+									<BookmarksPanel removeBookmark={removeBookmark} bookmarks={bookmarks}/>
+								</ExpansionPanelDetails>
+							</ExpansionPanel>
+							<Divider />
+							<DeliveryPanel
+								expanded={this.state.activePanel === 'delivery'}
+								onChange={(e, expanded) => {if (expanded) this.setState({activePanel: 'delivery'})}} />
 							<Divider />
 						</div>
 					</div>

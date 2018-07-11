@@ -1,5 +1,7 @@
 import {combineReducers} from 'redux'
 
+const MAX_PAGES = 30
+
 const defaultZoomLevel = 100
 const zoomLevelIncrement = 10
 const minimumZoomLevel = 10
@@ -108,6 +110,26 @@ const signInModal = (store, action) => {
 	return typeof store === 'undefined' ? false : store
 }
 
+const currentIndex = (store, action) => {
+	if (action.type === 'SET_CURRENT_INDEX') {
+		if (action.index < 0) action.index = 0
+		if (action.index > MAX_PAGES) action.index = MAX_PAGES
+		return {index: action.index, shouldScroll: action.shouldScroll}
+	}
+
+	return typeof store === 'undefined' ? {index: 0, shouldScroll: true} : store
+}
+
+const bookmarks = (store, action) => {
+	if (action.type === 'ADD_BOOKMARK') {
+		return [...store, action.bookmark]
+	} else if (action.type === 'REMOVE_BOOKMARK') {
+		return store.filter(bookmark => bookmark.index !== action.bookmark.index)
+	}
+
+	return typeof store === 'undefined' ? [] : store
+}
+
 export default combineReducers({
   zoomLevel,
 	leftNavOpen: leftNavOpen(),
@@ -115,5 +137,7 @@ export default combineReducers({
 	resultsList,
 	search,
 	user,
-	signInModal
+	signInModal,
+	currentIndex,
+	bookmarks
 })

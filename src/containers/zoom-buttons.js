@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import ZoomSlider from '../components/zoom/zoom-buttons';
+import ZoomSlider from '../components/zoom-buttons';
 import { incrementZoomLevel, decrementZoomLevel, toggleFullscreen } from '../actions';
 
 const leftNavOpenMult = 0.8;

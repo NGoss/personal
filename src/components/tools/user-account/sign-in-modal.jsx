@@ -78,7 +78,7 @@ class SignInModal extends React.Component {
 									<Typography variant="button">Cancel</Typography>
 								</Button>
 								<Button onClick={this.fetchUserAndAuthenticate.bind(this)} color="primary">
-									<Typography variant="button">Sign In</Typography>
+									<Typography color="primary" variant="button">Sign In</Typography>
 								</Button>
 							</DialogActions>
 						</div>
@@ -97,7 +97,7 @@ class SignInModal extends React.Component {
 									<Typography variant="button">Cancel</Typography>
 								</Button>
 								<Button onClick={this.createUserAndAuthenticate.bind(this)} color="primary">
-									<Typography variant="button">Create Account</Typography>
+									<Typography color="primary" variant="button">Create Account</Typography>
 								</Button>
 							</DialogActions>
 						</div>

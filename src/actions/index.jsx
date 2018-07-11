@@ -93,3 +93,25 @@ export const closeSignInModal = () => {
 		type: 'CLOSE_SIGN_IN_MODAL'
 	}
 }
+
+export const setCurrentIndex = (index, shouldScroll = false) => {
+	return {
+		type: 'SET_CURRENT_INDEX',
+		index,
+		shouldScroll
+	}
+}
+
+export const addBookmark = (bookmark) => {
+	return {
+		type: 'ADD_BOOKMARK',
+		bookmark
+	}
+}
+
+export const removeBookmark = (index) => {
+	return {
+		type: 'REMOVE_BOOKMARK',
+		bookmark: { index }
+	}
+}

@@ -11,7 +11,8 @@ const styles = (theme) => ({
 	},
 	bookInfo: {
 		paddingBottom: '1em',
-		width: '100%'
+		width: '100%',
+		height: '80%'
 	},
 	coverImage: {
 		height: '8em',

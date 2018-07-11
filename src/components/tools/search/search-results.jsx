@@ -46,7 +46,7 @@ class Results extends React.Component {
 								<ul className={classes.ul}>
 									<ListSubheader>Page 1</ListSubheader>
 									<ListItem button>
-										<ListItemText primary={'...dolor sit amet, consectetur adipiscing...'} />
+										<ListItemText>...dolor sit amet, <b>consectetur</b> adipiscing...</ListItemText>
 									</ListItem>
 								</ul>
 							</li>
@@ -54,10 +54,10 @@ class Results extends React.Component {
 								<ul className={classes.ul}>
 									<ListSubheader>Page 10</ListSubheader>
 									<ListItem button>
-										<ListItemText primary={'Fusce condimentum sagittis viverra...'}/>
+										<ListItemText>Fusce condimentum <b>sagittis</b> viverra...</ListItemText>
 									</ListItem>
 									<ListItem button>
-										<ListItemText primary={'...tincidunt sed pulvinar vel, gravida vitae arcu. Aenean...'} />
+										<ListItemText>...tincidunt sed <b>pulvinar</b> vel, gravida vitae arcu. Aenean...</ListItemText>
 									</ListItem>
 								</ul>
 							</li>
@@ -65,10 +65,10 @@ class Results extends React.Component {
 								<ul className={classes.ul}>
 									<ListSubheader>Page 14</ListSubheader>
 									<ListItem button>
-										<ListItemText primary={'...Integer magna urna, pharetra sed tempor...'}/>
+										<ListItemText>...Integer magna <b>urna</b>, pharetra sed tempor...</ListItemText>
 									</ListItem>
 									<ListItem button>
-										<ListItemText primary={'...dapibus sodales libero eu pulvinar...'}/>
+										<ListItemText>...dapibus sodales <b>libero</b> eu pulvinar...</ListItemText>
 									</ListItem>
 								</ul>
 							</li>
@@ -76,10 +76,10 @@ class Results extends React.Component {
 								<ul className={classes.ul}>
 									<ListSubheader>Page 150</ListSubheader>
 									<ListItem button>
-										<ListItemText primary={'...massa sollicitudin elementum. Donec erat nulla...'} />
+										<ListItemText>...massa <b>sollicitudin</b> elementum. Donec erat nulla...</ListItemText>
 									</ListItem>
 									<ListItem button>
-										<ListItemText primary={'...tincidunt sed pulvinar vel...'} />
+										<ListItemText>...<b>tincidunt</b> sed pulvinar vel pharetra sed tempor...</ListItemText>
 									</ListItem>
 								</ul>
 							</li>
@@ -87,7 +87,7 @@ class Results extends React.Component {
 								<ul className={classes.ul}>
 									<ListSubheader>Page 242</ListSubheader>
 									<ListItem button>
-										<ListItemText primary={'Fusce condimentum sagittis viverra...'}/>
+										<ListItemText>Fusce condimentum <b>sagittis</b> viverra...</ListItemText>
 									</ListItem>
 								</ul>
 							</li>
@@ -95,7 +95,7 @@ class Results extends React.Component {
 								<ul className={classes.ul}>
 									<ListSubheader>Page 244</ListSubheader>
 									<ListItem button>
-										<ListItemText primary={'...massa sollicitudin elementum. Donec erat nulla...'} />
+										<ListItemText>...massa sollicitudin <b>elementum</b>. Donec erat nulla...</ListItemText>
 									</ListItem>
 								</ul>
 							</li>
@@ -103,10 +103,10 @@ class Results extends React.Component {
 								<ul className={classes.ul}>
 									<ListSubheader>Page 244</ListSubheader>
 									<ListItem button>
-										<ListItemText primary={'..., gravida vitae arcu. Aenean...'} />
+										<ListItemText>..., gravida <b>vitae</b> arcu. Aenean...</ListItemText>
 									</ListItem>
 									<ListItem button>
-										<ListItemText primary={'...Aliquam finibus tempor erat...'} />
+										<ListItemText>...Aliquam <b>finibus</b> tempor erat...</ListItemText>
 									</ListItem>
 								</ul>
 							</li>

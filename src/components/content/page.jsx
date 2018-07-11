@@ -1,16 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Paper from '@material-ui/core/Paper';
 import { withStyles } from '@material-ui/core/styles'
+
+import defaultContent from './default-content'
+
+import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
-import { ScreenClassRender } from 'react-grid-system'
-import casual from 'casual-browserify'
+import Popover from '@material-ui/core/Popover'
+import IconButton from '@material-ui/core/IconButton'
+import BookmarkIcon from '@material-ui/icons/Bookmark'
+import BookmarkBorderIcon from '@material-ui/icons/BookmarkBorder'
 
+import BookmarkPopover from './bookmark-popover'
 
-const widthFactor = 0.75
-const heightFactor = 1
-const marginFactor = 0.25
-const mobileFactor = 0.4
+const heightFactor = 10
+const widthFactor = 7.5
 
 const styles = (theme) => ({
 	page: {
@@ -25,6 +29,11 @@ const styles = (theme) => ({
 	},
 	text: {
 		paddingRight: 10,
+	},
+	button: {
+		position: 'absolute',
+		top: -10,
+		right: -10
 	}
 })
 
@@ -32,58 +41,54 @@ class Page extends React.Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			headline: casual.title,
-			content: [
-				casual.text,
-				casual.text,
-				casual.text,
-				casual.text,
-				casual.text,
-				casual.text,
-				casual.text,
-				casual.text,
-				casual.text,
-				casual.text,
-				casual.text,
-				casual.text,
-				casual.text,
-				casual.text,
-			]
+			popoverOpen: false,
 		}
 	}
 	render() {
-		const { classes } = this.props;
+		const { classes, zoomFactor, index, style, isBookmarked } = this.props;
 
-		const renderPage = (screenClass) => {
-			const isMobile = ['xs', 'sm'].includes(screenClass)
+		const pageContent = defaultContent[index%5]
 
-			const zoomFactor = !isMobile ? this.props.zoomLevel
-				: this.props.zoomLevel * mobileFactor
-
-			return (
-				<Paper square={true} className={classes.page} style={{
-						width: `${widthFactor * zoomFactor}em`,
-						height: `${heightFactor * zoomFactor}em`,
-						marginTop: `${marginFactor * zoomFactor}px`,
-						marginBottom: `${marginFactor * zoomFactor}px`
-					}}>
-					<div className={classes.contentWrapper}>
-						<Typography
-							className={classes.text}
-							style={{zoom: `${zoomFactor}%`}}
-							variant="headline">{this.state.headline}</Typography>
-						{this.state.content.map((text, index) =>
-							(<Typography
-								className={classes.text}
-								style={{zoom: `${zoomFactor}%`}}
-								key={index} variant="body1">{text}</Typography>))}
-					</div>
-				</Paper>
-			)
-		}
+		const pageStyle = {...style}
+		pageStyle.height=`${heightFactor * zoomFactor}px`
+		pageStyle.width = `${widthFactor * zoomFactor}px`
+		pageStyle.left = `Calc(50% - ${pageStyle.width} * 0.5)`
 
 		return (
-			<ScreenClassRender render={renderPage} />
+			<Paper key={index} square={true} className={classes.page} style={pageStyle}>
+				<IconButton
+					className={classes.button}
+					onClick={(event) => {
+						!isBookmarked ? this.props.addBookmark({index, section: pageContent.title}) : this.props.removeBookmark(index)
+						this.setState({clickedButton: isBookmarked ? null : event.target.parentElement})
+						if (!this.state.bookmarked) this.setState({popoverOpen: true})
+					}}>
+					{isBookmarked ? <BookmarkIcon /> : <BookmarkBorderIcon />}
+				</IconButton>
+				<Popover
+					anchorEl={this.state.clickedButton}
+					open={this.state.popoverOpen}
+					onClose={() => {this.setState({popoverOpen: false})}}
+					anchorOrigin={{
+						vertical: 'center',
+						horizontal: 'right',
+					}}
+					transformOrigin={{
+						vertical: 'top',
+						horizontal: 'left',
+					}}><BookmarkPopover /></Popover>
+				<div className={classes.contentWrapper}>
+					<Typography variant="display1">{index}</Typography>
+					<Typography
+						className={classes.text}
+						style={{zoom: `${zoomFactor}%`}}
+						variant="headline">{pageContent.title}</Typography>
+					<Typography
+						className={classes.text}
+						style={{zoom: `${zoomFactor}%`}}
+						key={index} variant="body1">{pageContent.content}</Typography>
+				</div>
+			</Paper>
 		)
 	}
 }

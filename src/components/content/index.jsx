@@ -4,11 +4,17 @@ import Page from './page'
 import { withStyles } from '@material-ui/core/styles'
 import classNames from 'classnames'
 import { ScreenClassRender } from 'react-grid-system'
+import VirtualList from 'react-tiny-virtual-list'
+import { SizeMe } from 'react-sizeme'
+
+const mobileFactor = 0.4
+const heightFactor = 10
+const marginFactor = 0.25
 
 const styles = (theme) => ({
 	content: {
+		height: '100%',
 		'background-color': '#E0E0E0',
-		'overflow-y': 'scroll',
 		transition: theme.transitions.create(['margin', 'width'], {
 			easing: theme.transitions.easing.sharp,
 			duration: theme.transitions.duration.leavingScreen,
@@ -47,23 +53,34 @@ const styles = (theme) => ({
 
 class Content extends React.Component {
 	render() {
-		const { classes, leftNavOpen, zoomLevel } = this.props
+		const { classes, leftNavOpen, zoomLevel, currentIndex, addBookmark, removeBookmark, bookmarks } = this.props
 
 		const renderContent = (screenClass) => {
 			const isMobile = ['xs', 'sm'].includes(screenClass)
 
+			const zoomFactor = !isMobile ? zoomLevel : zoomLevel * mobileFactor
+
 			return (
-				<div className={classNames(classes.content, {
-						[classes['content-shift']]: !isMobile && leftNavOpen
-					})}>
-					<Page zoomLevel={zoomLevel} />
-					<Page zoomLevel={zoomLevel} />
-					<Page zoomLevel={zoomLevel} />
-					<Page zoomLevel={zoomLevel} />
-					<Page zoomLevel={zoomLevel} />
-					<Page zoomLevel={zoomLevel} />
-					<Page zoomLevel={zoomLevel} />
-				</div>
+				<SizeMe
+					monitorHeight>{({ size }) =>
+					<div className={classNames(classes.content, {
+							[classes['content-shift']]: !isMobile && leftNavOpen
+						})}>
+						<VirtualList
+							renderItem={({index, style}) => <Page key={index} isBookmarked={bookmarks.some(bookmark => bookmark.index === index)}
+																							addBookmark={addBookmark} removeBookmark={removeBookmark} zoomFactor={zoomFactor} index={index} style={style} />}
+							height={size.height}
+							width="100%"
+							itemCount={31}
+							overscanCount={1}
+							itemSize={(heightFactor + marginFactor) * zoomFactor}
+							onScroll={(scrollTop, event) => {
+								this.props.setCurrentIndex(Math.floor((scrollTop + document.body.clientHeight / 2) / ((heightFactor + marginFactor) * zoomFactor) ))
+							}}
+							{...currentIndex.shouldScroll ? {scrollToIndex: currentIndex.index} : {}}
+							/>
+					</div>}
+				</SizeMe>
 			)
 		}
 

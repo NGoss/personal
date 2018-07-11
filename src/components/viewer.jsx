@@ -4,6 +4,7 @@ import TopToolbar from '../containers/top-toolbar'
 import LeftNavPanel from '../containers/left-nav-panel'
 import Content from '../containers/content'
 import ZoomButtons from '../containers/zoom-buttons'
+import Paging from '../containers/paging'
 import { withStyles } from '@material-ui/core/styles'
 
 const styles = () => ({
@@ -23,6 +24,7 @@ class Viewer extends React.Component {
 				<LeftNavPanel />
 				<Content />
 				<ZoomButtons />
+				<Paging />
 			</div>
 		);
 	}

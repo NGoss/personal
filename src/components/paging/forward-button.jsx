@@ -2,16 +2,19 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/core/styles'
 import IconButton from '@material-ui/core/IconButton'
-import SearchIcon from '@material-ui/icons/Search'
+import NavigateNextIcon from '@material-ui/icons/NavigateNext'
 
 const styles = () => ({
 	root: {
 		display: 'inline-block',
 	},
+	button: {
+		color: '#000'
+	}
 })
 
 
-class SearchButton extends React.Component {
+class ForwardButton extends React.Component {
 
 	render() {
 		const { classes, handleClick } = this.props;
@@ -19,19 +22,18 @@ class SearchButton extends React.Component {
 		return (
 			<div className={classes.root}>
 				<IconButton
-					color="secondary"
 					className={classes.button}
 					onClick={handleClick}>
-					<SearchIcon />
+					<NavigateNextIcon className={classes.button} color="inherit" />
 				</IconButton>
 			</div>
 		)
 	}
 }
 
-SearchButton.propTypes = {
+ForwardButton.propTypes = {
 	classes: PropTypes.object,
 	handleClick: PropTypes.func,
 }
 
-export default withStyles(styles)(SearchButton)
+export default withStyles(styles)(ForwardButton)

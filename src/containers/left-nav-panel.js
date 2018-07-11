@@ -1,11 +1,12 @@
 import { connect } from 'react-redux'
 import LeftNavPanel from '../components/left-nav-panel'
-import { closeLeftNav } from '../actions'
+import { closeLeftNav, removeBookmark } from '../actions'
 
 const mapStateToProps = (state) => {
 	return {
 		leftNavOpen: state.leftNavOpen,
 		user: state.user,
+		bookmarks: state.bookmarks
 	}
 }
 
@@ -15,6 +16,9 @@ const mapDispatchToProps = (dispatch) => {
 			return isMobile
 				? () => {dispatch(closeLeftNav('mobile'))}
 				: () => {dispatch(closeLeftNav('desktop'))}
+		},
+		removeBookmark(index) {
+			dispatch(removeBookmark(index))
 		}
 	}
 }

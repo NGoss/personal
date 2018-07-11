@@ -3,6 +3,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/core/styles'
+import { Visible } from 'react-grid-system'
+
 import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
 
@@ -29,16 +31,18 @@ class SignInButton extends React.Component {
 		}
 		return (
 			<div className={classes.root}>
-				<Button
-					variant="raised"
-					color="secondary"
-					className={classes.button}
-					onClick={handleClick}
-					size="small">
-					<Typography color="inherit" variant="button">
-						Sign In
-					</Typography>
-				</Button>
+				<Visible md lg xl>
+					<Button
+						variant="raised"
+						color="secondary"
+						className={classes.button}
+						onClick={handleClick}
+						size="small">
+						<Typography color="inherit" variant="button">
+							Sign In
+						</Typography>
+					</Button>
+				</Visible>
 				<SignInModal
 					handleSignIn={signIn}
 					isOpen={signInModalOpen}
