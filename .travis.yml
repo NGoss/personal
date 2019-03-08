@@ -8,6 +8,6 @@ deploy:
   provider: s3
   access_key_id: "AKIAIWQEBYOYM3ARRCVQ"
   secret_access_key: $AWS_ACCESS_KEY
-  bucket: "foinse.viewer"
+  bucket: "viewer.foinse.io"
   skip_cleanup: true
   local_dir: build
