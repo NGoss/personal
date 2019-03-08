@@ -71,7 +71,7 @@ class Content extends React.Component {
 																							addBookmark={addBookmark} removeBookmark={removeBookmark} zoomFactor={zoomFactor} index={index} style={style} />}
 							height={size.height}
 							width="100%"
-							itemCount={31}
+							itemCount={10}
 							overscanCount={1}
 							itemSize={(heightFactor + marginFactor) * zoomFactor}
 							onScroll={(scrollTop, event) => {

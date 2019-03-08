@@ -4,6 +4,7 @@ import { withStyles } from '@material-ui/core/styles'
 import SearchButton from './search-button'
 import SearchInput from './search-input'
 import SearchResults from './search-results'
+import ActualSearchResults from './actual-search-results'
 import { ScreenClassRender } from 'react-grid-system'
 import ClickAwayListener from '@material-ui/core/ClickAwayListener'
 
@@ -23,8 +24,20 @@ class Search extends React.Component {
 		super(props)
 
 		this.state = {
-			expanded: false
+			expanded: false,
+			term: ''
 		}
+
+		this.handleInput = this.handleInput.bind(this)
+	}
+
+	handleInput(event) {
+		if (event.target.value === '') {
+			this.props.hideResults()
+		} else {
+			this.props.showResults(event.target.value)
+		}
+		this.setState({term: event.target.value});
 	}
 
 	render() {
@@ -40,8 +53,8 @@ class Search extends React.Component {
 							expanded={search}
 							className={classes.searchInput}
 							showResults={showResults}
-							hideResults={hideResults}/>
-						<SearchResults activated={search && resultsList} />
+							handleInput={this.handleInput}/>
+						<ActualSearchResults searchTerm={this.state.term} activated={search && resultsList} />
 					</div>
 				</ClickAwayListener>
 			)

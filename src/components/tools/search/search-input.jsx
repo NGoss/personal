@@ -44,7 +44,7 @@ const styles = (theme) => ({
 class SearchButton extends React.Component {
 
 	render() {
-		const { classes, expanded, hideResults, showResults } = this.props;
+		const { classes, expanded, showResults, handleInput } = this.props;
 
 		return (
 			<form className={classes.root} noValidate autoComplete="off">
@@ -60,13 +60,7 @@ class SearchButton extends React.Component {
 					}}
 					onFocus={(event) => { if (event.target.value.length > 0) showResults() }}
 					className={expanded ? classes.textField : classes.collapsed}
-					onChange={(event) => {
-						if (event.target.value === '') {
-							hideResults()
-						} else {
-							showResults()
-						}
-					}}
+					onChange={handleInput}
 					margin="normal"
 				/>
 			</form>
@@ -77,8 +71,7 @@ class SearchButton extends React.Component {
 SearchButton.propTypes = {
 	classes: PropTypes.object,
 	expanded: PropTypes.bool,
-	hideResults: PropTypes.func,
-	showResults: PropTypes.func
+	handleInput: PropTypes.func,
 }
 
 export default withStyles(styles)(SearchButton)

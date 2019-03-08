@@ -1,6 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { ScreenClassRender } from 'react-grid-system'
 import { withStyles } from '@material-ui/core/styles'
+
 import Drawer from '@material-ui/core/Drawer'
 import Divider from '@material-ui/core/Divider'
 import ExpansionPanel from '@material-ui/core/ExpansionPanel'
@@ -11,7 +13,7 @@ import Typography from '@material-ui/core/Typography'
 import List from '@material-ui/core/List'
 import IconButton from '@material-ui/core/IconButton'
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
-import { ScreenClassRender } from 'react-grid-system'
+import Badge from '@material-ui/core/Badge'
 
 import TocElement from './toc-element'
 import InfoSection from './info-section'
@@ -52,6 +54,10 @@ const styles = theme => ({
 	},
 	tocSection: {
 		width: '100%',
+	},
+	bookmarkBadge: {
+		top: '-4px',
+		right: '-4px'
 	}
 })
 
@@ -125,7 +131,13 @@ class LeftNavPanel extends React.Component {
 								onChange={(e, expanded) => {if (expanded) this.setState({activePanel: 'bookmarks'})}}
 								className={classes.drawerItem}>
 								<ExpansionPanelSummary>
-									<Typography variant="headline">Bookmarks</Typography>
+									{
+										bookmarks.length === 0 ?
+										<Typography variant="headline">Bookmarks</Typography> :
+										<Badge classes={{badge: classes.bookmarkBadge}} badgeContent={bookmarks.length} color="primary">
+											<Typography variant="headline">Bookmarks</Typography>
+										</Badge>
+									}
 								</ExpansionPanelSummary>
 								<ExpansionPanelDetails>
 									<BookmarksPanel removeBookmark={removeBookmark} bookmarks={bookmarks}/>
